@@ -1,0 +1,341 @@
+{
+    "STRINGS": {
+        "UTILS": {
+            "WELCOME": "welcome",
+            "BACK": "back",
+            "TO": "to",
+            "OKAY": "Okay",
+            "OR": "or",
+            "SORRY": "sorry",
+            "POINTS": "points",
+            "TOPIC": "topic",
+            "NO_PROBLEM": "No problem"
+        },
+        "TITLES": {
+            "WHAT_DID_I_BUY": "WHAT DID I BUY",
+            "WHAT_CAN_I_BUY": "WHAT CAN I BUY",
+            "TOPIC_OF_THE_DAY": "TODAY'S TOPIC",
+            "PLAYER_STATISTICS": "PLAYER STATS",
+            "POINTS_BY_TOPIC": "Points by topic",
+            "STREAK": "Day Streak",
+            "CORRECT_PERCENT": "Correct Questions",
+            "QUESTIONS_PLAYED": "Questions Played",
+            "TOTAL_POINTS": "Total Points",
+            "TODAYS_QUESTION": "Today's Question",
+            "BONUS_QUESTION": "Bonus Question",
+            "CORRECT": "Correct",
+            "INCORRECT": "Incorrect",
+            "STOP": "TODAY'S TRIVIA",
+            "APPNAME": "Today's Trivia",
+            "TRIVIA_CLUB": "TODAY'S TRIVIA GOLD",
+            "FREE_TRAIL": "Start 7 Day Free Trial",
+            "HELP": "Help",
+            "CORRECT_ANSWER": "Correct Answers",
+            "TOTAL_QUESTIONS": "Total Questions",
+            "LEADERBOARD": "{0} LEADERBOARD"
+        },
+        "ASK_TO_VIEW_LEADERBOARD": [
+            "Want to see the leaderboard?"
+        ],
+        "STATE_LEADERBOARD_SPEECH": [
+            "You have scored {0} points and you are on {1} rank in {2}."
+        ],
+        "ASK_TO_BUY_LATER": [
+            "You can ask me to sign up for Gold Membership anytime. "
+        ],
+        "POINT": [
+            "Your Total Points"
+        ],
+        "RANK": [
+            "Your Rank"
+        ],
+        "HINT": [
+            "got this right"
+        ],
+        "CONTINUE_GAME_SPEECH": [
+            "To continue the game, you can say, Alexa, Continue the game"
+        ],
+        "QUESTION_POINTS": [
+            "It is worth {0} points."
+        ],
+        "POINTS_EARNED": [
+            "You have earned {0} points."
+        ],
+        "SKILL_DESCRIPTION": [
+            "Each day, I'll challenge you with a brand new trivia question. Answer correctly to earn points and unlock a bonus question. You're sure to learn something new and have fun every day. Let's get started!"
+        ],
+        "QUESTION_TODAYS_EXHAUSTED": [
+            "It looks like you have played questions for today."
+        ],
+        "QUESTION_SHOWCASE": [
+            "Here is {0}."
+        ],
+        "BONUS_QUESTION_SHOWCASE": [
+            "Congrats! You've just earned a Bonus Question. Get ready for your challenge. It's valued at {0} points.",
+            "Awesome job! A Bonus Question is now unlocked for you. Your task is to answer it for {0} points.",
+            "Good news! You've unlocked a Bonus Question. Brace yourself for the challenge. It's worth {0} points.",
+            "Well done! You've earned a Bonus Question. It's worth {0} points. Let's see if you can answer it!"
+        ],
+        "TOPIC_OF_THE_DAY_SHOWCASE": [
+            "The topic is {0}."
+        ],
+        "CHALLENGE_QUESTION_COUNT": [
+            [
+                "Let's start with your first challenge question.",
+                "Here's the challenge question to kick things off.",
+                "The first of three challenge questions is now before you. "
+            ],
+            [
+                "Let's move on to your second challenge question.",
+                "Here's your next challenge question.",
+                "On to the second challenge question."
+            ],
+            [
+                "Here is your final challenge question.",
+                "It's time for your third challenge question. Here it is.",
+                "Your third challenge question is up next. Let's go."
+            ]
+        ],
+        "QUESTION_TOPIC_SHOWCASE": [
+            "The topic is {0}."
+        ],
+        "CORRECT_ANSWER": [
+            "Bravo! Smart and quick thinking.",
+            "You rock at trivia! Awesome!",
+            "You must be a trivia genius!",
+            "You've got the trivia touch!",
+            "Holy guacamole, you're right!",
+            "Snap, crackle, correct! You're amazing!",
+            "On point! Keep shining bright!",
+            "Aces! You got it right!",
+            "You're on a roll! Keep rocking!",
+            "You're cracking the trivia code!"
+        ],
+        "INCORRECT_ANSWER": [
+            "Oops! you answered this time incorrectly, the correct answer is {0}",
+            "That's not the answer that they gave me. Sorry. I wish you had said {0}",
+            "No. You should have said {0}",
+            "Sorry! Can't give you a point this time. The correct answer is {0}",
+            "I'm sorry. That's not right. I was looking for {0}",
+            "Sorry, you got it wrong. The correct answer is {0}",
+            "Well, that gets a zero on the correctness scale. The correct answer is {0}",
+            "So close. So very close. The correct answer is {0}",
+            "Your answer didn't match what I was looking for. The correct answer is {0}",
+            "Oh no. That's 100 percent wrong. The answer I was looking for is {0}"
+        ],
+        "CORRECT_PERCENTAGE": [
+            "{0}% of users answered it correctly. "
+        ],
+        "BADGE_EARNED": [
+            "you have earned a {0} badge of {1}"
+        ],
+        "TOPIC_OF_THE_DAY_HEADING": [
+            "The topic of the day is {0}"
+        ],
+        "CORRECT_STREAK_SPEECH": [
+            "you have {0} questions correctly in a row"
+        ],
+        "TOTAL_POINT_SPEECH": [
+            "Your total points are {0}."
+        ],
+        "ZERO_POINT_SPEECH": [
+            "You haven't earned any points yet."
+        ],
+        "APOLOGY": [
+            "Sorry, I missed that"
+        ],
+        "ASK_FOR_STATISTICS": [
+            "Would you like to hear your statistics?"
+        ],
+        "CAREER_CORRECT_PERCENTAGE": [
+            "You have answered {0}% of answers correctly"
+        ],
+        "TOTAL_POINTS_EARNED": [
+            "You have earned a total of {0} points"
+        ],
+        "DAILY_STREAK": [
+            "Your streak is {0}"
+        ],
+        "GOODBYE_SPEECH": [
+            "Come back tomorrow to continue your streak. Just say, \"Alexa, Open Today's Trivia\".",
+            "To keep your streak going, make sure to come back tomorrow. Just say, \"Alexa, Open Today's Trivia\".",
+            "Remember to come back tomorrow and say, \"Alexa, Open Today's Trivia\" to continue your streak"
+        ],
+        "END_PHRASES": [
+            "Thanks for playing."
+        ],
+        "THANK_YOU": [
+            "Thank You."
+        ],
+
+
+        "HELP_SPEECH": [
+            "In Today's Trivia, I'll ask you a multiple-choice trivia question. To select the correct answer, you have two options. You can either repeat one choice I've provided. Or you can use the corresponding letter associated with the correct answer, such as A, B, or C.  Earn points by selecting the correct answer. Join Gold Membership to get three bonus questions every day, worth double points, and access to the state leaderboard. Say \"Repeat\" to hear this information again say \"Continue\" to continue the game."
+        ],
+        "REPEAT": [
+            "If you would like for me to repeat a question, just say Repeat"
+        ],
+        "ACCOUNT_LINK_SUCCESS": [
+            "You have now linked your account"
+        ],
+        "ACCOUNT_LINK_FAILED": [
+
+            
+            "To link your account, I have sent you a card on app"
+        ],
+        "UPSELL_MESSAGE": {
+            "LAUNCH": [
+                "Claim your rewards now! Let's start your free trial to unlock 3 Daily Bonus Questions worth double points and access the state leaderboard to know your performance against other players. Would you like to start your seven-day free trial?"
+            ],
+            "AFTER_DAILY": [
+                "Claim your rewards now! Let's start your free trial to unlock 3 Daily Bonus Questions worth double points and access the state leaderboard to know your performance against other players. Would you like to start your seven-day free trial?"
+            ]
+        },
+        "ALREADY_REFUNDED": [
+            "Thanks for asking but we have already refunded. Say continue to continue the game."
+        ],
+        "ALREADY_PURCHASED": [
+            "Good News. You have already purchased our Gold Membership. Say continue to continue the game."
+        ],
+        "ASK_TO_CONTINUE": [
+            "Do you want to continue the game."
+        ],
+        "DECLINE_AND_CONTINUE": [
+            "Say continue, to continue the game."
+        ],
+        "NOT_ENTITLED_THANK_YOU": [
+            "You haven't subscribed to Trivia Gold. Say continue to continue the game."
+        ],
+        "CONTINUE": [
+            "Say continue to continue the game."
+        ],
+        "RP": [
+            "Can you hear me? Answer the question or say repeat to hear it again."
+        ],
+        "DECLINED_REFUND": [
+            "Say continue to continue the game?"
+        ],
+        "REFUND": [
+            "Refunded Succesfully. Continue the game?"
+        ],
+        "ASK_TO_JOIN_LEADERBOARD": [
+            "As a Gold member, you get access to your state leaderboard. Track your progress and compare your gaming performance against other players. Would you like to join?"
+        ],
+        "ASK_FOR_STATE": [
+            "Which state would you like to represent? "
+        ],
+        "VERIFY_STATE": [
+            "I heard {0}, is that right?"
+        ],
+        "WELCOME_SUBSCRIBER": [
+            "Welcome to the Gold Club! A group of knowledgeable and passionate individuals who enjoy challenging their minds with interesting and fun facts."
+        ],
+        "SKILL_CONNECTION_MESSAGE": {
+            "WYR_FAMILY": [
+                "To continue the fun, let's play a game of Would You Rather, where you make a choice between two silly situations."
+            ],
+            "TRIVIA_BATTLE": [
+                "To continue the fun, let's play a game of Trivia Battle, where you can help your state climb the smartness leaderboard."
+            ],
+            "MY_HOROSCOPE": [
+                "To continue the fun, let's see your todays Horoscope."
+            ],
+            "LUCKY_TRIVIA": [
+                "To keep the joy rolling, let's play a round of Lucky Trivia. Daily challenges for endless fun and learning!"
+            ]
+        },
+        "PROMOTIONAL_MESSAGES": {
+            "PROMOTIONAL_MESSAGE": [
+                "Now help your state climb the smartness leaderboard by playing our skill, Trivia Battle. Say, Alexa, open Trivia Battle."
+            ],
+            "ENABLE_PROMOTION": false
+        },
+        "ACCOUNT_LINKING_MSG": [
+            "I have send you a card on your alexa app for linking your account."
+        ],
+        "ASK_TO_LINK_ACCOUNT": [
+            "Do you want to link your account?"
+        ],
+        "ASK_TO_ACCOUNT_LINK": [
+            "You can get latest updates regarding Today's Trivia and our other skills by linking your account. "
+        ],
+        "ASK_TO_LAUNCH": [
+            "Do you want to try it?"
+        ]
+    },
+    "AUDIOS": {
+        "WELCOME": [
+            "welcome.mp3"
+        ],
+        "END": [
+            "end.mp3"
+        ],
+        "CORRECT_ANSWER": [
+            "correct-answer.mp3"
+        ],
+        "WRONG_ANSWER": [
+            "wrong-answer.mp3"
+        ],
+        "RETURNING_INTRO": [
+            "welcome-returing.mp3"
+        ]
+    },
+    "IMAGES": {
+        "DEFAULT_BG": [
+            "defaultBg.jpg"
+        ],
+        "START_LOGO_BG": [
+            "launchScreen.jpg"
+        ],
+        "LOGOS": {
+            "geography": "geography.png",
+            "sports": "sports.png",
+            "animal": "animal.png",
+            "arts-and-entertainment": "arts-and-entertainment.png",
+            "history": "history.png",
+            "politics": "politics.png",
+            "science": "science.png",
+            "general-knowledge": "general-knowledge.png",
+            "literature": "literature.png",
+            "movie": "movies.png"
+        },
+        "BACKGROUNDS": {
+            "question": "question.jpg",
+            "goodByeScreen": "goodByeScreen.jpg",
+            "answer": "answer.jpg",
+            "showTopic": "todaysTopic.jpg",
+            "stats": "stats.jpg",
+            "upsell": "upsell.jpg",
+            "selectState": "selectState.jpg",
+            "leaderboard": "leaderboard.jpg",
+            "splashScreen": "splashScreen.jpg"
+        },
+        "TOPICSFRAME": {
+            "geography": "geography.png",
+            "sports": "sports.png",
+            "animal": "animal.png",
+            "arts-and-entertainment": "arts-and-entertainment.png",
+            "history": "history.png",
+            "science": "science.png",
+            "general-knowledge": "general-knowledge.png",
+            "literature": "literature.png",
+            "movie": "movies.png"
+        },
+        "PROPS": {
+            "orangeCircle": "orangeCircle.png",
+            "orangeRectangle": "orangeRectangle.png",
+            "purpleTitleBar": "purpleTitleBar.png",
+            "orangeHexagon": "orangeHexagon.png",
+            "purpleStatsBar": "purpleStatsBar.png",
+            "upsellCard": "card.png",
+            "selectStateProp": "selectStateProp.png",
+            "pinkSquare": "pinkSquare.png",
+            "orangeSemiTrapezium": "orangeSemiTrapezium.png",
+            "blueSemiTrapezium": "blueSemiTrapezium.png"
+        },
+        "ICONS": {
+            "yellowTrophy": "yellowTrophy.png",
+            "yellowBadge": "yellowBadge.png"
+        }
+    }
+}
