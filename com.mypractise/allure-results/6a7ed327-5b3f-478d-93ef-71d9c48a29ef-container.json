@@ -1,0 +1,1 @@
+{"uuid":"6a7ed327-5b3f-478d-93ef-71d9c48a29ef","name":"com.mypractise.Addtocart","children":["98fedc7d-51b6-4498-9720-4997faa4f2ca"],"befores":[{"name":"login","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1741869239873,"stop":1741869253870}],"afters":[],"start":1741869239802,"stop":1741869257277}
