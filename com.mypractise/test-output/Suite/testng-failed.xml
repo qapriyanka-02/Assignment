@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite thread-count="2" parallel="tests" name="Failed suite [Suite]" guice-stage="DEVELOPMENT">
+  <test thread-count="2" parallel="tests" name="chromeTest(failed)">
+    <parameter name="browser" value="chrome"/>
+    <groups>
+      <run>
+        <include name="smoke"/>
+      </run>
+    </groups>
+    <classes>
+      <class name="TestExecution.Runtestcase">
+        <methods>
+          <include name="execute_testcase2"/>
+        </methods>
+      </class> <!-- TestExecution.Runtestcase -->
+    </classes>
+  </test> <!-- chromeTest(failed) -->
+  <test thread-count="2" parallel="tests" name="EdgeTest(failed)">
+    <parameter name="browser" value="Edge"/>
+    <classes>
+      <class name="TestExecution.Runtestcase">
+        <methods>
+          <include name="login"/>
+          <include name="closebrowser"/>
+          <include name="execute_testcase2"/>
+        </methods>
+      </class> <!-- TestExecution.Runtestcase -->
+    </classes>
+  </test> <!-- EdgeTest(failed) -->
+  <test thread-count="2" parallel="tests" name="FirefocTest(failed)">
+    <parameter name="browser" value="firefox"/>
+    <classes>
+      <class name="TestExecution.Runtestcase">
+        <methods>
+          <include name="login"/>
+          <include name="closebrowser"/>
+          <include name="execute_testcase2"/>
+        </methods>
+      </class> <!-- TestExecution.Runtestcase -->
+    </classes>
+  </test> <!-- FirefocTest(failed) -->
+</suite> <!-- Failed suite [Suite] -->

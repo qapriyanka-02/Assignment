@@ -1,25 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+<testng-results ignored="0" total="2" passed="2" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-03-18T13:26:38 IST" name="Default suite" finished-at="2025-03-18T13:27:04 IST" duration-ms="26035">
+  <suite started-at="2025-04-22T16:58:03 IST" name="Default suite" finished-at="2025-04-22T16:58:32 IST" duration-ms="28910">
     <groups>
     </groups>
-    <test started-at="2025-03-18T13:26:38 IST" name="Default test" finished-at="2025-03-18T13:27:04 IST" duration-ms="26035">
-      <class name="com.mypractise.Addtocart">
-        <test-method is-config="true" signature="login()[pri:0, instance:com.mypractise.Addtocart@3fc9504b]" started-at="2025-03-18T13:26:38 IST" name="login" finished-at="2025-03-18T13:26:56 IST" duration-ms="18040" status="PASS">
+    <test started-at="2025-04-22T16:58:03 IST" name="Default test" finished-at="2025-04-22T16:58:32 IST" duration-ms="28910">
+      <class name="TestExecution.RSA_Test">
+        <test-method signature="Login_Test()[pri:1, instance:TestExecution.RSA_Test@42b02722]" started-at="2025-04-22T16:58:03 IST" name="Login_Test" finished-at="2025-04-22T16:58:24 IST" duration-ms="21053" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- login -->
-        <test-method signature="proceedtocart()[pri:0, instance:com.mypractise.Addtocart@3fc9504b]" started-at="2025-03-18T13:26:57 IST" name="proceedtocart" finished-at="2025-03-18T13:27:04 IST" duration-ms="7046" status="PASS">
+        </test-method> <!-- Login_Test -->
+        <test-method signature="mouseOver()[pri:10, instance:TestExecution.RSA_Test@42b02722]" started-at="2025-04-22T16:58:25 IST" name="mouseOver" finished-at="2025-04-22T16:58:32 IST" duration-ms="6813" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- proceedtocart -->
-        <test-method is-config="true" signature="closebrowser()[pri:0, instance:com.mypractise.Addtocart@3fc9504b]" started-at="2025-03-18T13:27:04 IST" name="closebrowser" finished-at="2025-03-18T13:27:04 IST" duration-ms="613" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- closebrowser -->
-      </class> <!-- com.mypractise.Addtocart -->
+        </test-method> <!-- mouseOver -->
+      </class> <!-- TestExecution.RSA_Test -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

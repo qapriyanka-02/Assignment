@@ -5,7 +5,10 @@ import static org.testng.Assert.assertEquals;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -19,14 +22,18 @@ import org.testng.annotations.Test;
 
 import Utility.ExcelReader;
 import Utility.Login_SauceDemo;
+import java.net.URL;
 
-public class Addtocart extends Login_SauceDemo  {
+public class Addtocart extends Login_SauceDemo {
+
+
 	public static FileInputStream fis;
 	public static XSSFWorkbook workbook;
 	public static XSSFSheet sheet;	
 	public  double total_price=0.0;
-	@Test
+	
 	public void proceedtocart() throws InterruptedException, IOException {
+		
 		
 		List<WebElement> btn_cart=driver.findElements(By.xpath("//div[@class='pricebar']/button[text()='Add to cart']"));
 																//div[@class='pricebar']/*[text()='Add to cart']
@@ -46,9 +53,43 @@ public class Addtocart extends Login_SauceDemo  {
 		cart_items_price();
 		check_out_item_price();
 		finish();	
+		valid_all_URLs();
+	}
+	public void valid_all_URLs() throws MalformedURLException, IOException {
 		
+		List<WebElement> allinks= driver.findElements(By.tagName("a"));
+		System.out.println("links of webpage: "+ allinks.size() );	
+				
+				for(WebElement links: allinks) {
+			    String url=links.getAttribute("href");
+			if(url!=null & !url.isEmpty()) {
+				check_URLS(url);
+			}else
+			{
+				System.out.println("empty or null url");
+			}
+		}
 	}
 	
+	public void check_URLS(String url) throws MalformedURLException, IOException {
+		try {
+		HttpURLConnection connection= (HttpURLConnection) new URL(url).openConnection();
+		connection.setRequestMethod("HEAD");
+		connection.connect();
+		
+		int responsecode=connection.getResponseCode();
+		
+		if(responsecode>=200 && responsecode<300) {
+			System.out.println(url + "valid urls" + responsecode);
+		}
+		else
+		{
+			System.out.println(url + "broken" + responsecode);
+		}	
+		}	catch (Exception e) {
+			System.out.println("invalid url");
+		}
+	}
 	public void finish() {
 		
 		WebElement btn_finish= driver.findElement(By.cssSelector("#finish"));
@@ -146,6 +187,28 @@ public class Addtocart extends Login_SauceDemo  {
 		last_name_field.sendKeys(last_name);
 		postal_code_field.sendKeys(postal_code);
 		System.out.println("Capture the checkout info from excel");
+		
+	}
+	
+	public void getwindowhandles() {
+		
+		String main_window=driver.getWindowHandle();
+		
+		System.out.println("main window" + main_window);
+		
+		Set<String> allwindow=driver.getWindowHandles();
+		
+		for(String window:allwindow) {
+			
+			if(!window.equals(main_window)) {
+				driver.switchTo().window(window);
+				System.out.println("switch to new window"+ driver.getTitle());
+			break;
+			}
+			
+			driver.switchTo().window(main_window);
+		}
+		
 		
 	}
 	
