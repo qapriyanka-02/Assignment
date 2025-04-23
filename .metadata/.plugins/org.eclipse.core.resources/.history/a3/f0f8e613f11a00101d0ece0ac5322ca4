@@ -1,0 +1,17 @@
+package com.mypractise;
+
+import org.openqa.selenium.WebDriver;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class RSA_Practise {
+
+	public WebDriver driver;
+	public void RSA_Login() {
+		
+		WebDriverManager.chromedriver();
+		driver.get("https://rahulshettyacademy.com/AutomationPractice/");
+		
+		
+	}
+}

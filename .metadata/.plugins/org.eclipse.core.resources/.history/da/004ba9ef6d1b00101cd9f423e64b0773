@@ -1,0 +1,20 @@
+package TestExecution;
+
+import org.testng.annotations.Test;
+
+import com.mypractise.RSA_Practise;
+
+public class RSA_Test {
+
+	@Test
+	public void Login_Test() {
+		
+		RSA_Practise obj= new RSA_Practise();
+		obj.RSA_Login();
+		obj.teardown();
+	}
+	
+	
+	
+	
+}

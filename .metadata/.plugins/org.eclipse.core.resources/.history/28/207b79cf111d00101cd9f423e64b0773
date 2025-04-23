@@ -1,0 +1,64 @@
+package com.mypractise;
+
+import java.time.Duration;
+import java.util.List;import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterTest;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class RSA_Practise {
+
+	public WebDriver driver;
+	public void RSA_Login() throws InterruptedException {
+		
+		WebDriverManager.chromedriver().setup();
+		driver=new ChromeDriver();
+		driver.get("https://rahulshettyacademy.com/AutomationPractice/");
+		driver.manage().window().maximize();
+		
+	}
+	
+	
+	public void radiobuttoncode() throws InterruptedException {
+		List<WebElement> rdbbtn= driver.findElements(By.xpath("//fieldset//input[@type='radio']"));
+		for(WebElement radio:rdbbtn) {
+			System.err.println(radio.getAttribute("value"));
+			radio.click();
+			Thread.sleep(1000);
+			System.out.println("Radio button is clicked");
+		}	
+	}
+
+	public void Suggestiondropdowncode() throws InterruptedException {
+		//li[contains(.,'India')]/normalize-space()  // this xpath is use to get the match and exact element
+		WebElement drp= driver.findElement(By.id("autocomplete"));
+		drp.click();  
+		drp.sendKeys("india");
+		// WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(2));
+		List<WebElement> selectCountry=driver.findElements(By.xpath("//ul[@id='ui-id-1']//li/div[@id='ui-id-45']"));
+	//	wait.until(ExpectedConditions.visibilityOf(selectCountry));
+		System.out.println(selectCountry.size());
+		
+		for(int i=0; i< selectCountry.size(); i++) {
+			System.out.println(selectCountry.get(i).getText());
+			if(selectCountry.get(i).getText().equals("India")) {
+				selectCountry.get(i).click();
+				Thread.sleep(1000);
+				break;
+			}
+		}
+		
+		
+	}
+	@AfterTest
+	public void teardown() {
+		driver.close();
+	}
+}

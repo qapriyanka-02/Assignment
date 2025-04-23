@@ -1,0 +1,512 @@
+package com.voicegames.automation.TestClasses;
+
+import static org.testng.Assert.assertEquals;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Random;
+import java.util.Set;
+import java.util.StringTokenizer;
+
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.json.simple.parser.ParseException;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.testng.Assert;
+
+import com.aventstack.extentreports.Status;
+import com.voicegames.automation.Utility.Common;
+import com.voicegames.automation.Utility.ExtentReport;
+import com.voicegames.automation.Utility.InteractionModel;
+
+public class MultiScenarios extends Common {
+	static int TotalPoints = 0;
+	static int TQPoints = 0;
+	static int BQPoints = 0;
+	static int CQPoints = 0;
+	static int streax = 0;
+	public static Sheet sheet;
+	public static XSSFWorkbook wb;
+	public static FileInputStream fis;
+	public static Cell cell;
+	public static Iterator<Row> itr;
+	public static Iterator<Cell> cellIterator;
+	public static ArrayList<String> args;
+	public static String Intent;
+	public static FileOutputStream fo;
+	public static Row row;
+
+	public static void read_streax_count() throws IOException {
+		File file = new File(StreaxCountFilePath);
+		String str;
+		BufferedReader br = new BufferedReader(new FileReader(file));
+		StringTokenizer stn = null;
+		while ((str = br.readLine()) != null)
+			stn = new StringTokenizer(str);
+		streax = Integer.parseInt(stn.nextToken());
+		streax++;
+		System.out.println(streax);
+	}
+
+	public void TT_IN_Locale_Scenarios() throws IOException, InvalidFormatException, InterruptedException {
+
+		File file = new File(testdatafilepath);
+		fis = new FileInputStream(file);
+		wb = new XSSFWorkbook(fis);
+		try {
+		Iterator<Sheet> sheetItr = wb.sheetIterator();
+		while (sheetItr.hasNext()) {
+			refresh();
+			bootstrap_dropdown();
+			sheet = sheetItr.next();
+			String sheetName = sheet.getSheetName();
+			System.out.println("Sheet name: " + sheetName);
+			TQPoints = 0;
+			BQPoints = 0;
+			CQPoints = 0;
+			// sheet = wb.getSheetAt(0);
+				Iterator<Row> itr = sheet.iterator(); // iterating over excel file
+				ExtentReport.test.log(Status.INFO, "Test Scenarios Sheet" + sheetName);
+				while (itr.hasNext()) {
+					Row row = itr.next();
+					cellIterator = row.cellIterator();
+					args = new ArrayList<String>();// iterating over each column
+					while (cellIterator.hasNext()) {
+						cell = cellIterator.next();
+						// field that represents string cell type
+						args.add(cell.getStringCellValue());
+						System.out.print(cell.getStringCellValue() + " ");
+						System.out.println();
+					}
+					Intent = args.get(0);
+					args.remove(0); // removed first column of excel
+					IntentHandler(Intent, args);
+				}
+			}
+		
+		}catch (Exception e) {
+				String methodname = new Exception().getStackTrace()[0].getMethodName();
+				ExtentReport.test.log(Status.FAIL, methodname);
+				ExtentReport.test.log(Status.INFO,"flow break");
+			} finally {
+				System.out.println("***** Finally Executed ******");
+			}
+			Thread.sleep(500);
+		fo = new FileOutputStream(testdatafilepath);
+		wb.write(fo);
+		fis.close();
+	    fo.close();
+		wb.close();
+		}
+
+	public void USLocalFlow() throws IOException, InvalidFormatException, InterruptedException, ParseException {
+
+		File file_US = new File(Us_testdata);
+		System.out.println("file path" + file_US.getAbsolutePath());
+		fis = new FileInputStream(file_US);
+		wb = new XSSFWorkbook(fis);
+		Iterator<Sheet> sheetItr = wb.sheetIterator();
+		while (sheetItr.hasNext()) {
+			Generic_Flow.start_flow();
+			sheet = sheetItr.next();
+			String sheetName = sheet.getSheetName();
+			System.out.println("Sheet name: " + sheetName);
+			TQPoints = 0;
+			BQPoints = 0;
+			CQPoints = 0;
+			itr = sheet.iterator(); // iterating over excel file
+			try {
+				InteractionModel.interactionModel();
+			//	Utterances.interactionModel();
+			} catch (IOException e) {
+				
+				e.printStackTrace();
+			} catch (ParseException e) {
+				
+				e.printStackTrace();
+			}finally {
+				System.out.println(InteractionModel.intentHashMap);
+			}
+			ExtentReport.test.log(Status.INFO, "Test Scenarios Sheet" + sheetName);
+			while (itr.hasNext()) {
+				Row row = itr.next();
+				Iterator<Cell> cellIterator = row.cellIterator();
+				ArrayList<String> args = new ArrayList<String>();// iterating over each column
+				while (cellIterator.hasNext()) {
+					cell = cellIterator.next();
+					args.add(cell.getStringCellValue());
+					System.out.print(cell.getStringCellValue() + " ");
+					System.out.println();
+				}
+				String Intent = args.get(0);
+				args.remove(0); // removed first column of excel
+				IntentHandler(Intent, args);
+
+			}
+			driver.findElement(your_skill).click();
+		}
+
+		Thread.sleep(500);
+		wb.close();
+	}
+
+	public void US_Return_User() throws IOException, InvalidFormatException, InterruptedException, ParseException {
+
+		File file_US = new File(ReturnUserpath);
+		FileInputStream fis = new FileInputStream(file_US);
+		XSSFWorkbook wb = new XSSFWorkbook(fis);
+		Generic_Flow.start_flow(); // commented temp
+		Iterator<Sheet> sheetItr = wb.sheetIterator();
+		while (sheetItr.hasNext()) {
+			Sheet sheet = sheetItr.next();
+			String sheetName = sheet.getSheetName();
+			System.out.println("Sheet name: " + sheetName);
+			TQPoints = 0;
+			BQPoints = 0;
+			CQPoints = 0;
+			Iterator<Row> itr = sheet.iterator(); // iterating over excel file
+			ExtentReport.test.log(Status.INFO, "US Return User Test Scenarios Sheet" + sheetName);
+			while (itr.hasNext()) {
+				Row row = itr.next();
+				Iterator<Cell> cellIterator = row.cellIterator();
+				ArrayList<String> args = new ArrayList<String>();// iterating over each column
+				while (cellIterator.hasNext()) {
+					Cell cell = cellIterator.next();
+					args.add(cell.getStringCellValue());
+					System.out.print(cell.getStringCellValue() + " ");
+					System.out.println();
+				}
+				String Intent = args.get(0);
+				args.remove(0); // removed first column of excel
+				IntentHandler(Intent, args);
+
+			}
+			// driver.findElement(your_skill).click(); // commented for returning user
+		}
+
+		Thread.sleep(500);
+		wb.close();
+	}
+
+	public static void launchTT() throws InterruptedException {
+		Thread.sleep(6000);
+		ele = driver.findElement(input_xpath);
+		send_data(input);
+		press_enter();
+	}
+
+	public static void IntentHandler(String intent, List<String> args)
+			throws IOException, InvalidFormatException, InterruptedException, ParseException {
+		System.out.println(intent + args.toString());
+		switch (intent) {
+		case "LAUNCH": {
+			launchTT();
+			break;
+		}
+		case "PURCHASE": {
+			String skill_purchase = args.get(0);
+			purchase(skill_purchase);
+			break;
+		}
+		case "STOP": {
+			String stop_skill = args.get(0);
+			StopSkill(stop_skill);
+			break;
+		}
+		case "REFRESH": {
+			Refresh_Skill();
+			break;
+		}
+		case "GENERATE_NEW_USER": {
+			GenerateNewUser_dropdown();
+			break;
+		}
+		case "SELECT_LOCALE": {
+			drp_selectLocal();
+			break;
+		}
+		case "SELECT_IN_LOCALE": {
+			drp_IN_Local();
+			break;
+		}	
+		case "TODAYS_QUESTION": {
+			boolean shouldAnswerCorrect = Boolean.parseBoolean(args.get(0));
+			TodaysQuestion(shouldAnswerCorrect);
+			break;
+		}
+		case "BONUS_QUESTION": {
+			boolean shouldAnswerCorrect = Boolean.parseBoolean(args.get(0));
+			BonusQuestion(shouldAnswerCorrect);
+			break;
+		}
+		case "CLAIM_REWARDS": {
+			String str_claim = args.get(0);
+			ClaimRewards(str_claim);
+			break;
+		}
+		case "DEFAULT_PAYMENT": {
+			String defaultpayment = args.get(0);
+			DefaultPayment(defaultpayment);
+			break;
+		}
+
+		case "CHALLENGE_QUESTION": {
+			boolean shouldAnswerCorrect = Boolean.parseBoolean(args.get(0)); // convert excel string value to boolean
+			System.out.println("shouldAnswerCorrect: " + shouldAnswerCorrect);
+			ChallengeQuestion(shouldAnswerCorrect);
+			break;
+		}
+		case "ASK_LEADERBOARD": {
+			String str_leaderboard = args.get(0);
+			ask_leaderboard(str_leaderboard);
+			break;
+		}
+		case "US_ASK_LEADERBOARD": {
+			String str_leaderboard = args.get(0);
+			ask_leaderboard_US(str_leaderboard);
+			break;
+		}
+		case "LEADERBOARD_STATE": {
+			String str_state = args.get(0);
+			leaderboard_state(str_state);
+			break;
+		}
+		case "US_LEADERBOARD_STATE": {
+//			Set keys = InteractionModel.intentHashMap.keySet();
+			Random rnd = new Random();
+			String[] states = InteractionModel.getStates("USER_STATE");
+			System.out.println(states);
+			int randIndex = rnd.nextInt(states.length);
+			System.out.println("Random Index: " + randIndex);
+			String str_state = states[randIndex];
+			System.out.println("Selected State: " + str_state);
+			str_state = InteractionModel.findSynonyms("USER_STATE", str_state);
+			System.out.println("Print User States " + str_state);
+			US_leaderboard_state(str_state);
+			break;
+		}
+		case "ASK_STATISTICS": {
+			String str_statistics = args.get(0); // first value of 0th column
+			leaderboard_statistics(str_statistics);
+			break;
+		}
+		case "RETURNUSER_ASK_STATISTICS": { //for returning user
+			String str_statistics = args.get(0); 
+			ReturnUser_leaderboard_statistics(str_statistics);
+			break;
+		}
+		case "SKILL_CONNECTION": {
+			String str_connection = args.get(0);
+			skill_connection(str_connection);
+			break;
+		}
+		case "USER_INPUT": {
+			String user_input = args.get(0);
+			String tempXpath = args.get(1);
+			By locator = (By.xpath(String.format(xpathFormat, tempXpath)));
+			wait_for_element(locator);
+			user_input(user_input);
+			break;
+		}
+		}
+	}
+
+	public static void drp_selectLocal() throws InterruptedException {
+		Thread.sleep(250);
+		driver.findElement(drp_local).click();
+		WebElement w = driver.findElement(drp_local);
+		wait_for_element(drp_US);
+		driver.findElement(drp_US).click();
+		System.out.println("Selected US dropdown value");
+	}
+
+	public static void GenerateNewUser_dropdown() throws InterruptedException {
+		Thread.sleep(300);
+		wait_for_element(drp_toggle_xpath);
+		driver.findElement(drp_toggle_xpath).click();
+		wait_for_element(drp_off);
+		driver.findElement(drp_off).click();
+		refresh();
+		wait_for_element(drp_toggle_xpath);
+		driver.findElement(drp_toggle_xpath).click();
+		wait_for_element(drp_dev);
+		driver.findElement(drp_dev).click();
+		Thread.sleep(1000);
+	}
+
+	public static void purchase(String userInput) {
+		wait_for_element(short_audio);
+		lbFlowEle = driver.findElement(short_audio);
+		send_data(userInput);
+		press_enter();
+	}
+	public static void user_input(String userInput) {
+		wait_for_element(connection_xpath);
+		lbFlowEle = driver.findElement(connection_xpath);
+		send_data(userInput);
+		press_enter();
+	}
+	public static void user_input_ReturnUser(String userInput) {
+		wait_for_element(connection_xpath);
+		lbFlowEle = driver.findElement(connection_xpath);
+		send_data(userInput);
+		press_enter();
+	}
+	
+	public static void ClaimRewards(String userInput) {
+		wait_for_element(claim_rewards);
+		lbFlowEle = driver.findElement(claim_rewards);
+		send_data(userInput);
+		press_enter();
+	}
+
+	public static void StopSkill(String userInput) {
+		// lbFlowEle = driver.findElement(great_news);
+		send_data(userInput);
+		press_enter();
+	}
+
+	public static void Refresh_Skill() {
+		driver.navigate().refresh();
+	}
+
+	public static void DefaultPayment(String userInput) {
+		wait_for_element(deault_payment_xpath);
+		lbFlowEle = driver.findElement(deault_payment_xpath);
+		send_data(userInput);
+		press_enter();
+	}
+
+	public static void TodaysQuestion(boolean ans_T) throws IOException {
+		boolean shouldCountCorrectScore = generic_question_flow(ans_T);// when ans is given true/false accordingly it
+																		// cal the score
+		if (shouldCountCorrectScore)
+			TQPoints = TQPoints + 5;
+	}
+
+	public static void BonusQuestion(boolean ans_bonus) throws IOException {
+		boolean shouldCountCorrectScore = generic_question_flow(ans_bonus);
+		if (shouldCountCorrectScore)
+			BQPoints = BQPoints + 3;
+	}
+
+	public static void ChallengeQuestion(boolean ans_challenge) throws IOException {
+		boolean shouldCountCorrectScore = generic_question_flow(ans_challenge);
+		if (shouldCountCorrectScore)
+			CQPoints = CQPoints + 10;
+	}
+
+	public static void US_leaderboard_state(String userInput) {
+		wait_for_element(represent_xpath);
+		lbFlowEle = driver.findElement(represent_xpath);
+		send_data(userInput);
+		press_enter();
+		wait_for_element(US_state_xpath);
+		lbFlowEle = driver.findElement(US_state_xpath);
+		send_data(confirm_yes);
+		press_enter();
+		Assert.assertTrue(true);
+		ExtentReport.test.log(Status.PASS, "leaderboard flow");
+	}
+
+	public static void leaderboard_state(String userInput) {
+		wait_for_element(represent_xpath);
+		lbFlowEle = driver.findElement(represent_xpath);
+		send_data(userInput);
+		press_enter();
+		wait_for_element(state_xpath);
+		lbFlowEle = driver.findElement(state_xpath);
+		send_data(confirm_yes);
+		press_enter();
+		Assert.assertTrue(true);
+		ExtentReport.test.log(Status.PASS, "leaderboard flow");
+	}
+
+	public static void ask_leaderboard_US(String userInput)
+		throws InvalidFormatException, IOException, InterruptedException {
+		wait_for_element(US_ask__leaderboard);
+		lbFlowEle = driver.findElement(US_ask__leaderboard);
+		send_data(userInput);
+		press_enter();
+		
+	}
+
+	public static void ask_leaderboard(String userInput)
+			throws InvalidFormatException, IOException, InterruptedException {		
+			wait_for_element(leaderboard_xpath);
+			lbFlowEle = driver.findElement(leaderboard_xpath);
+			send_data(userInput);
+			press_enter();
+			
+	}
+
+	public static void leaderboard_statistics(String userInput) throws InterruptedException, IOException {
+		wait_for_element(statics_xpath);
+		lbFlowEle = driver.findElement(statics_xpath);
+		send_data(userInput);
+		press_enter();
+		TotalPoints = TQPoints + BQPoints + CQPoints;
+		read_streax_count();
+		score_cal(TotalPoints);
+		//getstreax(streax); //commented now for streax
+		Assert.assertTrue(true);
+	}
+
+	public static void ReturnUser_leaderboard_statistics(String userInput) throws InterruptedException, IOException {
+		wait_for_element(statics_xpath);
+		lbFlowEle = driver.findElement(statics_xpath);
+		send_data(userInput);
+		press_enter();
+		TotalPoints = TQPoints + BQPoints + CQPoints;
+		// score_cal(TotalPoints);
+		read_streax_count();
+		getstreax(streax);
+		System.out.println("printing the streax count......!");
+		Assert.assertTrue(true);
+	}
+
+	public static void skill_connection(String userInput) throws InterruptedException {
+		Thread.sleep(1000);
+		wait_for_element(skill_connection);
+		lbFlowEle = driver.findElement(skill_connection);
+		send_data(userInput);
+		press_enter();
+	}
+
+	public static void score_cal(int calculatedScore) throws InterruptedException {
+		Thread.sleep(8000);
+		WebElement score_ele = driver.findElement(final_score);
+		wait_for_element(final_score);
+		cal_score = score_ele.getText();
+		int webscore = getScore(cal_score);
+		assertEquals(calculatedScore, webscore);
+		ExtentReport.test.pass("Final score of the user" + webscore);
+		System.out.println("score after assertion: " + getScore(cal_score));
+		Assert.assertTrue(true);
+		// ExtentReport.test.log(Status.PASS, "Score match with the score calculated on
+		// webconsole");
+	}
+
+	public static void getstreax(int streax_count) throws InterruptedException {
+		Thread.sleep(3000);
+		wait_for_element(streax_xpath);
+		WebElement streax_ele = driver.findElement(streax_xpath);
+		System.err.println("print streax of console" + streax_ele.getText());
+		int get_Streax_regex_count = getStatistics(cal_streax_str);
+		assertEquals(streax_count, get_Streax_regex_count);
+		ExtentReport.test.pass("Final streax of the user" + cal_streax_str);
+		System.out.println("streax after assertion: " + getStatistics(cal_streax_str));
+		Assert.assertTrue(true);
+	}
+}

@@ -1,0 +1,118 @@
+package com.mypractise;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+import Utility.ExcelReader;
+import Utility.Login_SauceDemo;
+
+public class Addtocart extends Login_SauceDemo  {
+	public static FileInputStream fis;
+	public static XSSFWorkbook workbook;
+	public static XSSFSheet sheet;	
+	@Test
+	public void proceedtocart() throws InterruptedException, IOException {
+		
+		List<WebElement> btn_cart=driver.findElements(By.xpath("//div[@class='pricebar']/button[text()='Add to cart']"));
+																//div[@class='pricebar']/*[text()='Add to cart']
+		JavascriptExecutor js= (JavascriptExecutor)driver;
+		scroll_down();
+		driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+		for(WebElement button: btn_cart) {
+			button.click();
+		}	
+		System.out.println("items added to cart");
+		scroll_up();
+		System.out.println("scrolled up");
+		Thread.sleep(2000);
+		
+		WebElement cart= driver.findElement(By.xpath("//div[@id='shopping_cart_container']"));
+		cart.click();
+		
+		WebElement cartcountelement=driver.findElement(By.xpath("//div[@id='shopping_cart_container']/a/span"));
+		String cart_item_count=cartcountelement.getText();
+		int cartcount=Integer.parseInt(cart_item_count);
+		System.out.println("count of item in cart" + cartcount);		
+		int actual_count=6;
+		Assert.assertEquals(actual_count, cartcount);
+		
+		List<WebElement> item_quantity= driver.findElements(By.xpath("//div[@data-test='inventory-item-price']"));
+	    System.out.println("Quantity of items" + item_quantity.size());
+		
+		
+		
+		/*for(WebElement product_price: item_quantity) {
+			String price= product_price.getText().replace("$", "").trim();		
+			double price_count=Double.parseDouble(price);		
+			System.out.println("item price: " + price_count);	
+			 int quantity = Integer.parseInt(item_quantity.get(i).getText().trim());
+		}*/
+	    
+	    double total_price=0.0;
+		for(int i=0; i<item_quantity.size(); i++ ) {
+		
+			double price = Double.parseDouble(item_quantity.get(i).getText().replace("$", "").trim());
+		    int quantity = Integer.parseInt(item_quantity.get(i).getText());   
+		    total_price += price * quantity;
+		    System.out.println("Total item price: " + total_price);	
+		}
+		
+		WebElement btn_checkout= driver.findElement(By.xpath("//*[@id='checkout']"));
+		btn_checkout.click();
+		checkout();
+		WebElement btncontinue=driver.findElement(By.xpath("//*[@id='continue']"));
+		btncontinue.click();
+	}
+	
+	public void scroll_down() {
+		JavascriptExecutor js= (JavascriptExecutor)driver;
+		js.executeScript("window.scrollBy(0,1000)");
+	}
+
+	
+	public void scroll_up() {
+		JavascriptExecutor js= (JavascriptExecutor)driver;
+		js.executeScript("window.scrollBy(0,-1000)");
+	}
+	
+	public void checkout() throws IOException {
+		
+		fis= new FileInputStream("C:\\VoiceGamesAutomation\\com.mypractise\\src\\test\\resources\\Testdata\\testdata_login.xlsx");
+		workbook= new XSSFWorkbook(fis);
+	    sheet= workbook.getSheetAt(1);
+		
+		if (sheet == null) {
+		    throw new RuntimeException("Sheet not found in the workbook!");
+		}
+		
+		WebElement name_field=driver.findElement(By.xpath("//*[@id='first-name']"));
+		WebElement last_name_field=driver.findElement(By.xpath("//*[@id='last-name']"));
+		WebElement postal_code_field=driver.findElement(By.xpath("//*[@id='postal-code']"));
+		
+		
+		String name=sheet.getRow(1).getCell(0).getStringCellValue();
+		String last_name=sheet.getRow(1).getCell(1).getStringCellValue();
+		String postal_code=sheet.getRow(1).getCell(2).getStringCellValue();
+		
+		workbook.close();
+		fis.close();	
+		
+		name_field.sendKeys(name);
+		last_name_field.sendKeys(last_name);
+		postal_code_field.sendKeys(postal_code);
+		System.out.println("Capture the checkout info from excel");
+		
+	}
+	
+}

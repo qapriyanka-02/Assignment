@@ -1,0 +1,39 @@
+package com.mypractise;
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterTest;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class RSA_Practise {
+
+	public WebDriver driver;
+	public void RSA_Login() throws InterruptedException {
+		
+		WebDriverManager.chromedriver().setup();
+		driver=new ChromeDriver();
+		driver.get("https://rahulshettyacademy.com/AutomationPractice/");
+		driver.manage().window().maximize();
+		
+		List<WebElement> rdbbtn= driver.findElements(By.xpath("//fieldset//input[@type='radio']"));
+		for(WebElement radio:rdbbtn) {
+			System.err.println(radio.getAttribute("value"));
+			radio.click();
+			Thread.sleep(1000);
+			System.out.println("Radio button is clicked");
+		}
+		
+
+		
+	}
+	
+	@AfterTest
+	public void teardown() {
+		driver.close();
+	}
+}

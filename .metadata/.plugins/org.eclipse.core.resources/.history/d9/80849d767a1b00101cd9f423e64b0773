@@ -1,0 +1,31 @@
+package com.mypractise;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterTest;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class RSA_Practise {
+
+	public WebDriver driver;
+	public void RSA_Login() {
+		
+		WebDriverManager.chromedriver().setup();
+		driver=new ChromeDriver();
+		driver.get("https://rahulshettyacademy.com/AutomationPractice/");
+		driver.manage().window().maximize();
+		
+		WebElement rdbbtn= driver.findElement(By.xpath("//label[@for='radio1']//input"));
+		rdbbtn.click();
+		System.out.println("Radio button is clicked");
+		
+	}
+	
+	@AfterTest
+	public void teardown() {
+		driver.close();
+	}
+}
