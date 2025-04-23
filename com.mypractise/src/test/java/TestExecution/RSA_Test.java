@@ -11,54 +11,54 @@ public class RSA_Test {
 @Test(priority=1)
 	public void Login_Test() throws InterruptedException {
 		
-	//	RSA_Practise obj= new RSA_Practise();
+
 		obj.RSA_Login();
 	}
 	
-	//@Test(priority=2)
+	@Test(priority=2)
 	public void MultiSelect_RDB() throws InterruptedException {
 		obj.radiobuttoncode();
 	}
 	
-	//@Test(priority = 3)
+	@Test(priority = 3)
 	public void suggestiondrp() throws InterruptedException {
 		
 		obj.Suggestiondropdowncode();
 		obj.teardown();
 	}
 	
-	//@Test(priority=4)
+	@Test(priority=4)
 	public void fixtable_tc() {
 	obj.FixTable();
 	obj.teardown();	
 	}
 	
-//	@Test(priority=5)
+	@Test(priority=5)
 	public void dropdown_tc() {
 		obj.check_dropdown();
 		obj.teardown();
 	}
 	
-	//@Test(priority=6)
+	@Test(priority=6)
 	public void checkbox() {
 		obj.checkbox();
 		obj.teardown();
 	}
 	
-	//s@Test(priority=7)
+	@Test(priority=7)
 	public void OpenWindows() throws InterruptedException {
 		obj.switch_window();
 		obj.teardown();
 	}
 	
-	///@Test(priority=8)
+	@Test(priority=8)
 	public void OpenTab() throws InterruptedException{
 	//	obj.switch_tab();
 		obj.switch_windoww();
 		obj.teardown();
 	}
 	
-	//@Test(priority=9)
+	@Test(priority=9)
 	public void alert_tc() throws InterruptedException {
 		obj.alert_popup();
 		obj.teardown();
